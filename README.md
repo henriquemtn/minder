@@ -14,7 +14,8 @@
 </p>
 
 <p align="center">
-    <img src="./.github/example.png" alt="Image Example" width="400px">
+    <img src="./.github/example.png" alt="Image Example" width="600px">
+    <img src="./.github/example2.png" alt="Image Example 2" width="600px">
 </p>
 
 ## Tech Stack 🐋
