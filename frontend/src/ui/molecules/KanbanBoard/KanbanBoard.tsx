@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 import { Task as TaskType } from '@/lib/types';
 import KanbanColumn from './KanbanColumn';
 import { BiPlus } from 'react-icons/bi';
+import Image from 'next/image';
 
 interface KanbanBoardProps {
   tasks: TaskType[];
+  backgroundImage?: string;
 }
 
-export default function KanbanBoard({ tasks }: KanbanBoardProps) {
+export default function KanbanBoard({ tasks, backgroundImage = "/images/garden.jpg" }: KanbanBoardProps) {
   const [columns, setColumns] = useState([
     {
       id: 'todo',
@@ -76,9 +78,6 @@ export default function KanbanBoard({ tasks }: KanbanBoardProps) {
     
     // Update state
     setColumns(updatedColumns);
-    
-    // Here you would also want to make an API call to update the task status
-    // updateTaskStatus(taskId, newStatus);
   };
   
   // Function to allow drop
@@ -101,28 +100,44 @@ export default function KanbanBoard({ tasks }: KanbanBoardProps) {
   };
 
   return (
-    <div className="overflow-x-auto pb-4">
-      <div className="flex space-x-4 min-w-max">
-        {columns.map(column => (
-          <KanbanColumn 
-            key={column.id}
-            id={column.id}
-            title={column.title}
-            tasks={column.tasks}
-            color={column.color}
-            onDragStart={handleDragStart}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
+    <div className="relative h-full overflow-hidden">
+     <div className="absolute inset-0 z-0">
+        <div className="w-full min-h-screen relative">
+          <Image
+            src={backgroundImage}
+            alt="Kanban Background"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
-        ))}
-        
-        <div 
-          className="flex-shrink-0 w-72 rounded-lg h-auto flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
-          onClick={handleAddColumn}
-        >
-          <div className="p-4 flex flex-col items-center">
-            <BiPlus className="h-6 w-6 text-gray-500" />
-            <span className="text-gray-500 mt-1">Add Column</span>
+        </div>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      </div>
+      
+      {/* Kanban content */}
+      <div className="relative z-10 overflow-x-auto py-8 px-6">
+        <div className="flex space-x-4 max-w-7xl mx-auto pb-4">
+          {columns.map(column => (
+            <KanbanColumn 
+              key={column.id}
+              id={column.id}
+              title={column.title}
+              tasks={column.tasks}
+              color={column.color}
+              onDragStart={handleDragStart}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+            />
+          ))}
+          
+          <div 
+            className="flex-shrink-0 w-72 bg-white/80 backdrop-blur-sm rounded-lg h-auto flex flex-col items-center justify-center cursor-pointer hover:bg-white/90 transition-colors shadow-md"
+            onClick={handleAddColumn}
+          >
+            <div className="p-4 flex flex-col items-center">
+              <BiPlus className="h-6 w-6 text-gray-500" />
+              <span className="text-gray-500 mt-1">Add Column</span>
+            </div>
           </div>
         </div>
       </div>

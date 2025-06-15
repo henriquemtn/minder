@@ -4,11 +4,11 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <div className='p-4 border-b'>
-            <div className='flex flex-row justify-between items-center max-w-7xl mx-auto'>
+        <header className='sticky top-0 z-50 w-full bg-zinc-100 border-b shadow-sm'>
+            <div className='flex flex-row justify-between items-center max-w-7xl mx-auto p-4'>
                 <User />
                 <Clock />
             </div>
-        </div>
+        </header>
     )
 }

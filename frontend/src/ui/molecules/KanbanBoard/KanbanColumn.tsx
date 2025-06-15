@@ -24,12 +24,12 @@ export default function KanbanColumn({
 }: KanbanColumnProps) {
   return (
     <div 
-      className="flex-shrink-0 w-72 bg-gray-50 rounded-lg max-h-[calc(100vh-180px)] flex flex-col"
+      className="flex-shrink-0 w-72 bg-white/80 backdrop-blur-sm rounded-lg max-h-[calc(100vh-180px)] flex flex-col shadow-md"
       onDrop={(e) => onDrop(e, id)}
       onDragOver={onDragOver}
     >
       {/* Column Header */}
-      <div className="pb-3 flex items-center justify-between sticky top-0 rounded-t-lg z-10">
+      <div className="p-3 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm rounded-t-lg z-10 border-b border-gray-100">
         <div className="flex items-center">
           <div className={`h-3 w-3 rounded-full mr-2 ${color}`}></div>
           <h3 className="font-medium text-gray-800">{title}</h3>
@@ -37,23 +37,23 @@ export default function KanbanColumn({
             {tasks.length}
           </span>
         </div>
-        <button className="text-gray-500 hover:text-gray-700">
+        <button className="text-gray-500 hover:text-gray-700 p-1 rounded-md hover:bg-gray-100">
           <BiPlus className="h-5 w-5" />
         </button>
       </div>
       
       {/* Task Cards */}
-      <div className="flex-grow overflow-y-auto space-y-2 min-h-[200px]">
+      <div className="p-2 flex-grow overflow-y-auto space-y-2 min-h-[200px]">
         {tasks.length > 0 ? (
           tasks.map(task => (
-            <KanbanCard
+            <KanbanCard 
               key={task.id} 
               task={task} 
               onDragStart={(e) => onDragStart(e, task.id, id)} 
             />
           ))
         ) : (
-          <div className="h-20 flex items-center justify-center border-2 border-dashed border-gray-200 rounded-md">
+          <div className="h-20 flex items-center justify-center border-2 border-dashed border-gray-200 rounded-md bg-white/40">
             <p className="text-sm text-gray-400">Drop tasks here</p>
           </div>
         )}

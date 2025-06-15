@@ -1,6 +1,6 @@
 import React from 'react';
 import { Task as TaskType } from '@/lib/types';
-import { BiCalendar } from 'react-icons/bi';
+import { BiCalendar, BiChat } from 'react-icons/bi';
 
 interface KanbanCardProps {
   task: TaskType;
@@ -31,7 +31,7 @@ export default function KanbanCard({ task, onDragStart }: KanbanCardProps) {
 
   return (
     <div 
-      className="bg-white rounded-md shadow-sm p-3 cursor-move hover:shadow transition-shadow"
+      className="bg-white rounded-md shadow-sm p-3 cursor-move hover:shadow-md transition-all hover:-translate-y-0.5"
       draggable
       onDragStart={onDragStart}
     >
@@ -62,7 +62,8 @@ export default function KanbanCard({ task, onDragStart }: KanbanCardProps) {
         
         {/* Created date */}
         <div className="flex items-center">
-          <span>{task.createdAt && formatDate(task.createdAt)}</span>
+          <BiChat className="h-3 w-3 mr-1" />
+          <span>{formatDate(task.createdAt)}</span>
         </div>
       </div>
     </div>
