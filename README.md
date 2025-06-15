@@ -13,6 +13,10 @@
     <b>Microservice-based task management system with scalable architecture and asynchronous processing</b>
 </p>
 
+<p align="center">
+    <img src="./.github/example.png" alt="Image Example" width="400px">
+</p>
+
 ## Tech Stack 🐋
 
 <!--- # "Verify icons availability here https://github.com/tandpfun/skill-icons" -->
