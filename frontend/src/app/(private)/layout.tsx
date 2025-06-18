@@ -1,5 +1,6 @@
-import MainDock from "@/ui/organisms/Dock";
-import Header from "@/ui/organisms/Header";
+import { SidebarProvider } from "@/context/SidebarContext";
+import Sidebar from "@/ui/molecules/Sidebar";
+
 
 export default function PrivateLayout({
     children,
@@ -7,10 +8,11 @@ export default function PrivateLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="flex flex-col h-screen bg-zinc-50 ">
-            <Header />
-            {children}
-            <MainDock />
+        <div className="flex flex-row h-screen bg-[#f1f1f1] ">
+            <SidebarProvider>
+                <Sidebar />
+                {children}
+            </SidebarProvider>
         </div>
     );
 }
